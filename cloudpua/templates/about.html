@@ -6,16 +6,69 @@
 
 {% block head %}
 
+    <style>
+        div.container {
+            max-width: 600px;
+        }
+
+        div.info-container {
+            height: 200px;
+        }
+
+        div.title-box {
+            padding-top: 80px;
+            width: 40%;
+            height: 100%;
+            float: left;
+            text-align: right;
+        }
+
+        div.info-box {
+            padding-top: 117px;
+            width: 55%;
+            height: 100%;
+            float: right;
+        }
+
+        @media (max-width: 400px) {
+            div.info-container {
+                height: auto;
+            }
+
+            div.title-box {
+                padding-top: 80px;
+                margin: auto;
+                width: 80%;
+                height: auto;
+                float: none;
+                text-align: right;
+            }
+
+            div.info-box {
+                padding-top: 16px;
+                width: 80%;
+                margin: auto;
+                height: auto;
+                float: none;
+                text-align: center;
+            }
+        }
+    </style>
+
 {% endblock %}
 
 {% block body %}
-<div class="container">
-<div class="about-box">
-    <h1>关于云撩</h1>
-    <h4>云端套路搜索引擎</h4>
-    <p>主要贡献者：<a href="https://github.com/AZLisme">@AZLisme</a></p>
-</div>
-</div>
+    <div class="info-container">
+        <div class="title-box">
+            <h1>云撩</h1>
+            <h4>云端套路搜索引擎</h4>
+        </div>
+        <div class="info-box">
+            <p>主要贡献者：<a href="https://github.com/AZLisme">@AZLisme</a></p>
+            <p>基于以下开源软件：Flask SQLite SQLAlchemy</p>
+            <p>本项目开源于 <a href="https://www.github.com/AZLisme/cloudpua">Github</a></p>
+        </div>
+    </div>
 {% endblock %}
 
 {% block bottom %}

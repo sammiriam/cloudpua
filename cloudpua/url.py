@@ -67,6 +67,12 @@ def pua_create():
     return render_template("create_pua.html")
 
 
+@url_blueprint.route('/about', methods=['GET'])
+def about():
+    """关于页面"""
+    return render_template('about.html')
+
+
 @url_blueprint.app_template_filter('datetime')
 def _jinja2_datetime_filter(date: datetime, fmt=None):
     return date.strftime("%Y-%m-%d %H:%M:%S")
