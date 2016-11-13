@@ -7,6 +7,10 @@
 {% block head %}
 
     <style>
+        .container {
+            max-width: 600px;
+        }
+
         div.start-logo {
             text-align: center;
         }
@@ -36,44 +40,33 @@
             margin-bottom: 8px;
         }
 
-        div.bottom-info {
-            max-width: 400px;
-            text-align: right;
-            margin: auto;
-            margin-top: 32px;
-        }
-
         a {
-          text-decoration: none!important;
+            text-decoration: none !important;
         }
     </style>
 
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="start-logo">
-            <div style="height: 100px;"></div>
-            <h1>云撩</h1>
-            <p>自古真情留不住 总是套路得人心</p>
-            <div class="search-bar">
-                <input type="text" class="form-control">
-                <a href=""><div class="btn btn-success">搜索</div></a>
-            </div>
+    <div class="start-logo">
+        <div style="height: 100px;"></div>
+        <h1>云撩</h1>
+        <p>自古真情留不住 总是套路得人心</p>
+        <div class="search-bar">
+            <input type="text" class="form-control">
+            <a href="">
+                <div class="btn btn-success">搜索</div>
+            </a>
         </div>
-        <div class="hot-tags-container well">
-            <div>热门标签</div>
-            <p>
-                <a href="http://www.ip.cn"><span class="label label-info">破冰</span></a>
-                <a href="http://www.ip.cn"><span class="label label-info">表白</span></a>
-                <a href="http://www.ip.cn"><span class="label label-info">约会</span></a>
-                <a href="http://www.ip.cn"><span class="label label-info">称赞</span></a>
-            </p>
-        </div>
-        <div class="bottom-info">
-            <a href="{{ url_for('url_blueprint.pua_create') }}">贡献套路</a> - <a href="about">关于云撩</a>
-            <p>powerd by <a href="http://flask.pocoo.org/docs/0.11/">Flask</a></p>
-        </div>
+    </div>
+    <div class="hot-tags-container well">
+        <div>热门标签</div>
+        <p>
+            <a href="http://www.ip.cn"><span class="label label-info">破冰</span></a>
+            <a href="http://www.ip.cn"><span class="label label-info">表白</span></a>
+            <a href="http://www.ip.cn"><span class="label label-info">约会</span></a>
+            <a href="http://www.ip.cn"><span class="label label-info">称赞</span></a>
+        </p>
     </div>
 {% endblock %}
 

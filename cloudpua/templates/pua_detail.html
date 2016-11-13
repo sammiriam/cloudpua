@@ -6,9 +6,14 @@
 {% block head %}
     <style>
 
-  div.main-box {
+        div.container {
+            max-width: 800px;
+        }
+
+        div.main-box {
             max-width: 800px;
             margin: auto;
+            margin-top: 100px;
         }
 
         div.message-box {
@@ -20,20 +25,20 @@
             padding: 16px;
         }
 
-        div.message-box li {
+        div.message-box div.from-op, div.from-me {
             margin: 4px;
-            list-style-type: none;
+            list-style: none;
             width: 70%;
             padding: 8px;
             border-radius: 6px;
         }
 
-        div.message-box li.from-me {
+        div.message-box div.from-me {
             float: right;
             background: greenyellow;
         }
 
-        div.message-box li.from-me::after {
+        div.message-box div.from-me::after {
             content: "";
             position: relative;
             left: 12px;
@@ -46,12 +51,12 @@
             width: 0;
         }
 
-        div.message-box li.from-op {
+        div.message-box div.from-op {
             float: left;
             background: whitesmoke;
         }
 
-        div.message-box li.from-op::after {
+        div.message-box div.from-op::after {
             content: "";
             position: relative;
             left: -12px;
@@ -68,6 +73,31 @@
             display: inline;
             width: 50%;
             float: left;
+            padding: 8px;
+        }
+
+        div.top-search-bar {
+            margin-top: 16px;
+            float: right;
+            width: 30%;
+        }
+
+        @media (max-width: 500px) {
+            div.top-search-bar {
+                width: 100%;
+            }
+
+            div.message-box {
+                width: 100%;
+            }
+
+            div.info-box {
+                width: 100%;
+            }
+
+            div.main-box {
+                margin-top: 36px;
+            }
         }
     </style>
 
@@ -75,19 +105,21 @@
 
 {% block body %}
     <div class="container">
-    <div style="height: 100px;"></div>
+        <div class="input-group top-search-bar">
+            <input type="text" class="form-control" placeholder="更多套路">
+            <span class="input-group-addon">搜索</span>
+        </div>
         <div class="main-box">
             <div class="message-box">
-                <ul class="message">
+                <div class="message">
                     {% for msg in chat %}
-                        <li class="{% if msg[0] %}from-me{% else %}from-op{% endif %}">{{ msg[1] }}</li>
+                        <div class="{% if msg[0] %}from-me{% else %}from-op{% endif %}">{{ msg[1] }}</div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
             <div class="info-box">
                 <h1 class="title">{{ pua.title }}</h1>
-                <h6 class="author">{{ pua.author }}</h6>
-                <h6 class="date">{{ pua.date|datetime }}</h6>
+                <h6 class="author">{{ pua.author }} - {{ pua.date|datetime }}</h6>
                 <p class="descriptioon">{{ pua.description }}</p>
             </div>
         </div>
