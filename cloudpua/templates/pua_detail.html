@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+    套路详情
+{% endblock %}
+
+{% block head %}
+    <style>
+
+  div.main-box {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        div.message-box {
+            display: inline;
+            width: 50%;
+            min-width: 200px;
+            float: left;
+            margin: auto;
+            padding: 16px;
+        }
+
+        div.message-box li {
+            margin: 4px;
+            list-style-type: none;
+            width: 70%;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        div.message-box li.from-me {
+            float: right;
+            background: greenyellow;
+        }
+
+        div.message-box li.from-me::after {
+            content: "";
+            position: relative;
+            left: 12px;
+            top: 6px;
+            float: right;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 6px solid greenyellow;
+            display: block;
+            width: 0;
+        }
+
+        div.message-box li.from-op {
+            float: left;
+            background: whitesmoke;
+        }
+
+        div.message-box li.from-op::after {
+            content: "";
+            position: relative;
+            left: -12px;
+            top: 6px;
+            float: left;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-right: 6px solid whitesmoke;
+            display: block;
+            width: 0;
+        }
+
+        div.info-box {
+            display: inline;
+            width: 50%;
+            float: left;
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <div style="height: 100px;"></div>
+        <div class="main-box">
+            <div class="message-box">
+                <ul class="message">
+                    {% for msg in chat %}
+                        <li class="{% if msg[0] %}from-me{% else %}from-op{% endif %}">{{ msg[1] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="info-box">
+                <h1 class="title">{{ pua.title }}</h1>
+                <h6 class="author">{{ pua.author }}</h6>
+                <h6 class="date">{{ pua.date|datetime }}</h6>
+                <p class="descriptioon">{{ pua.description }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block bottom %}
+
+{% endblock %}

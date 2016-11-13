@@ -2,9 +2,9 @@
 """PUA模型层
 """
 
-from sqlalchemy import String, Text, Column, DateTime, Integer
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text
 
-from .db import DocumentBase
+from .db import DocumentBase, Session
 
 
 class PUA(DocumentBase):
@@ -24,7 +24,7 @@ class PUA(DocumentBase):
 
         :return 聊天记录的元组列表
         """
-        ori = self.content.copy()  # type: str
+        ori = self.content  # type: str
         return list(map(lambda x: (x[0] == '<', x[1:]), ori.split('\n')))
 
     @chat.setter
@@ -39,3 +39,19 @@ class PUA(DocumentBase):
         """
         assert isinstance(value, list)
         self.content = "\n".join(map(lambda x: "<{}".format(x[1]) if x[0] else ">{}".format(x[1]), value))
+
+
+class PUATag(DocumentBase):
+    __tablename__ = "tags"
+    tag = Column(String, primary_key=True)
+    pua = Column(String, ForeignKey(PUA.slug), primary_key=True)
+
+
+def pua_search(kw):
+    """根据关键字搜索PUA
+
+    从标签、标题、描述、内容中搜索，返回PUA列表
+    """
+    # TODO: 现在默认返回全部，修改这个伪实现
+    session = Session()
+    return session.query(PUA).all()

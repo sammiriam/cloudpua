@@ -4,6 +4,7 @@
 import click
 
 from cloudpua import create_app
+from cloudpua.db import Session
 
 app = create_app()
 
@@ -20,12 +21,20 @@ def unittest():
     import pytest
     pytest.main(["tests"])
 
+
 @cli.command()
 def initdb():
     """创建数据库"""
-    from cloudpua.db import DocumentBase, engine
+    from cloudpua.db import DocumentBase
+    engine = app.config.get('SQLALCHEMY_ENGINE')
     DocumentBase.metadata.create_all(engine)
     click.echo('Created db.')
+
+
+@cli.command()
+def listpua():
+    """枚举全部的PUA"""
+    pass  # TODO implement listpua
 
 
 @cli.command()
