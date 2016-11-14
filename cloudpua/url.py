@@ -3,6 +3,7 @@
 """
 from datetime import datetime
 
+import humanize
 from flask import Blueprint, abort, jsonify, render_template, request, url_for
 from flask import json
 
@@ -58,7 +59,7 @@ def pua_list():
     """PUA列表与搜索页面"""
     kw = request.args.get('q', default='')
     result = pua_search(kw)
-    return render_template("pua_list.html", result=result)
+    return render_template("pua_list.html", result=result, kw=kw)
 
 
 @url_blueprint.route('/create', methods=['GET'])
@@ -75,4 +76,5 @@ def about():
 
 @url_blueprint.app_template_filter('datetime')
 def _jinja2_datetime_filter(date: datetime, fmt=None):
-    return date.strftime("%Y-%m-%d %H:%M:%S")
+    return humanize.naturaltime(date)
+    #return date.strftime("%Y-%m-%d %H:%M:%S")

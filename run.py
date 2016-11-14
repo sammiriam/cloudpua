@@ -1,10 +1,12 @@
 # -*- encoding: utf-8 -*-
 """"""
+from datetime import datetime
 
 import click
 
 from cloudpua import create_app
 from cloudpua.db import Session
+from cloudpua.pua import PUA
 
 app = create_app()
 
@@ -29,6 +31,28 @@ def initdb():
     engine = app.config.get('SQLALCHEMY_ENGINE')
     DocumentBase.metadata.create_all(engine)
     click.echo('Created db.')
+
+
+@cli.command()
+@click.option("--slug", prompt="ID")
+@click.option("--title", prompt="标题")
+@click.option("--author", prompt="作者")
+@click.option("--description", prompt="描述")
+def newpua(slug, title, author, description):
+    """新建PUA条目"""
+    print("一行一句，首字符<表示发出，>表示收到，空行表示结束")
+    chat = []
+    while True:
+        line = input("请输入聊天内容: ")
+        if line == "" or line[0] not in "<>":
+            break
+        else:
+            chat.append((line[0] == "<", line[1:]))
+    pua = PUA(slug=slug, title=title, author=author, description=description, view=0, date=datetime.now())
+    pua.chat = chat
+    session = Session()
+    session.add(pua)
+    session.commit()
 
 
 @cli.command()

@@ -6,10 +6,52 @@
 
 {% block head %}
 
+    <style>
+        .container {
+            max-width: 700px;
+        }
+
+        .top-search-bar {
+            margin: 16px 0px;
+        }
+    </style>
+
 {% endblock %}
 
 {% block body %}
 
+    <div class="input-group top-search-bar">
+        <input type="text" class="form-control" placeholder="更多套路" value="{{ kw }}">
+        <span class="input-group-addon">搜索</span>
+    </div>
+
+    {% if result.__len__() == 0 %}
+
+        <h4 class="empty-info" style="text-align: center; margin: 32px">
+            很遗憾，并没有找到这样的套路，<a href="{{ url_for('url_blueprint.pua_create') }}">添加套路</a>
+        </h4>
+
+    {% else %}
+
+        <div class="search-result">
+            <div class="results">
+
+                {% for pua in result %}
+                    <div class="result-item">
+                        <h4 class="pua-title"><a
+                                href="{{ url_for('url_blueprint.pua_view', slug=pua.slug) }}">{{ pua.title }}</a></h4>
+                        <div class="pua-description">{{ pua.description }}</div>
+                        <div class="pua-info text-info">
+                            <span class="pua-author">{{ pua.author }}</span> -
+                            <span class="pua-time">{{ pua.date|datetime }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    {% endif %}
 {% endblock %}
 
 {% block bottom %}

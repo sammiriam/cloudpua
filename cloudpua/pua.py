@@ -22,6 +22,9 @@ class PUA(DocumentBase):
     def chat(self):
         """返回PUA的聊天记录
 
+        返回的数据格式为 [(True, "Hello!"), (False, "Yes!")]
+        元组的第一个bool值表示是否是我发出的信息。
+
         :return 聊天记录的元组列表
         """
         ori = self.content  # type: str
@@ -31,14 +34,26 @@ class PUA(DocumentBase):
     def chat(self, value):
         """设置PUA的聊天记录
 
-        [(True, "Hello!"), (False, "Yes!")]
-
+        接受的数据结构为 [(True, "Hello!"), (False, "Yes!")]
         元组第一个bool值表示是否是我发出的对话。
+
+        聊天数据被拼接成字符串存储在数据库中，以换行符为分割，前置箭头表示方向。<表示我发出的信息 、>表示我收到的信息
 
         :param value: 聊天记录的元组列表
         """
         assert isinstance(value, list)
         self.content = "\n".join(map(lambda x: "<{}".format(x[1]) if x[0] else ">{}".format(x[1]), value))
+
+    @classmethod
+    def search(cls, tags=None):
+        """
+
+        :param tags:
+        :return:
+        """
+        # TODO 实现pua搜索
+        session = Session()
+        return session.query(PUA).all()
 
 
 class PUATag(DocumentBase):
