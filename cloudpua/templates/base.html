@@ -13,6 +13,18 @@
             margin: auto;
             margin-top: 64px;
         }
+
+        .clearfix:after {
+            display: block;
+            clear: both;
+            content: "";
+            visibility: hidden;
+            height: 0
+        }
+
+        .clearfix {
+            zoom: 1
+        }
     </style>
 </head>
 <body>

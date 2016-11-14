@@ -108,7 +108,8 @@
         <input type="text" class="form-control" placeholder="更多套路">
         <span class="input-group-addon">搜索</span>
     </div>
-    <div class="main-box">
+    <div class="main-box clearfix">
+        <div></div>
         <div class="message-box">
             <div class="message">
                 {% for msg in chat %}
@@ -121,6 +122,7 @@
             <h6 class="author">{{ pua.author }} - {{ pua.date|datetime }}</h6>
             <p class="descriptioon">{{ pua.description }}</p>
         </div>
+        <div></div>
     </div>
 {% endblock %}
 
