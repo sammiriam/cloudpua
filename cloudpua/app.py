@@ -4,6 +4,7 @@
 from flask import Flask
 from .db import configure as db_configure
 
+
 def create_app():
     """create the flask app"""
     app = Flask("cloudpua")

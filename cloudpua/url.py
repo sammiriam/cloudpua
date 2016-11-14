@@ -76,5 +76,5 @@ def about():
 
 @url_blueprint.app_template_filter('datetime')
 def _jinja2_datetime_filter(date: datetime, fmt=None):
+    humanize.i18n.activate('zh_CN', path='etc/humanize')
     return humanize.naturaltime(date)
-    #return date.strftime("%Y-%m-%d %H:%M:%S")
