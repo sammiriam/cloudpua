@@ -69,47 +69,47 @@ msgstr "第"
 
 #: humanize/number.py:55
 msgid "million"
-msgstr "%(value) 百万"
+msgstr "百万"
 
 #: humanize/number.py:55
 msgid "billion"
-msgstr "%(value) 十亿"
+msgstr "十亿"
 
 #: humanize/number.py:55
 msgid "trillion"
-msgstr "%(value) 兆"
+msgstr "兆"
 
 #: humanize/number.py:55
 msgid "quadrillion"
-msgstr "%(value) 万亿"
+msgstr "万亿"
 
 #: humanize/number.py:56
 msgid "quintillion"
-msgstr "%(value) quintillion"
+msgstr "quintillion"
 
 #: humanize/number.py:56
 msgid "sextillion"
-msgstr "%(value) sextillion"
+msgstr "sextillion"
 
 #: humanize/number.py:56
 msgid "septillion"
-msgstr "%(value) septillion"
+msgstr "septillion"
 
 #: humanize/number.py:57
 msgid "octillion"
-msgstr "%(value) octillion"
+msgstr "octillion"
 
 #: humanize/number.py:57
 msgid "nonillion"
-msgstr "%(value) nonillion"
+msgstr "nonillion"
 
 #: humanize/number.py:57
 msgid "decillion"
-msgstr "%(value) decillion"
+msgstr "decillion"
 
 #: humanize/number.py:57
 msgid "googol"
-msgstr "%(value) googol"
+msgstr "googol"
 
 #: humanize/number.py:91
 msgid "one"
